@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/391535339412464226/e30aef68262349df827a8afd06f92c1b/artifacts
+end_time: 1752748852349
+entry_point_name: ''
+experiment_id: '391535339412464226'
+lifecycle_stage: active
+run_id: e30aef68262349df827a8afd06f92c1b
+run_name: suave-snipe-582
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1752748848764
+status: 3
+tags: []
+user_id: Pranav Bejgam

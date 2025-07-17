@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/787312093604506156/6c613d5725fc4c43bc64db923126c823/artifacts
+end_time: 1752730077178
+entry_point_name: ''
+experiment_id: '787312093604506156'
+lifecycle_stage: active
+run_id: 6c613d5725fc4c43bc64db923126c823
+run_name: fun-perch-918
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1752730072746
+status: 3
+tags: []
+user_id: Pranav Bejgam

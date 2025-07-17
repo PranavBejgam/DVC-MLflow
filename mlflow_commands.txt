@@ -1,0 +1,114 @@
+1. MLflow Tracking (Python API)
+These functions are used in Python scripts to track experiments, log parameters, metrics, artifacts, and models.
+
+mlflow.set_experiment(experiment_name)
+Purpose: Set or create an experiment to group runs.
+Example: mlflow.set_experiment("MyExperiment")
+Notes: Call once per script to set the active experiment.
+
+mlflow.start_run(run_id=None, experiment_id=None, run_name=None, nested=False)
+Purpose: Start a new run or resume an existing one to log data.
+Example: with mlflow.start_run(run_name="MyRun"):
+Notes: Use within a with block for automatic run closure.
+
+mlflow.log_param(key, value)
+Purpose: Log a single parameter (e.g., hyperparameter).
+Example: mlflow.log_param("alpha", 0.5)
+Notes: Parameters are static values (e.g., model settings).
+
+mlflow.log_metric(key, value, step=None)
+Purpose: Log a metric (e.g., accuracy, loss) for a run.
+Example: mlflow.log_metric("mse", 0.123)
+Notes: Metrics can be logged multiple times with step for time series.
+
+mlflow.log_artifact(local_path, artifact_path=None)
+Purpose: Log a file or directory as an artifact (e.g., plots, text files).
+Example: mlflow.log_artifact("plot.png")
+Notes: Artifacts are stored in the run’s artifact directory.
+
+mlflow.log_artifacts(local_dir, artifact_path=None)
+Purpose: Log all files in a directory as artifacts.
+Example: mlflow.log_artifacts("output_folder")
+
+mlflow.<framework>.log_model(model, artifact_path)
+Purpose: Log a model for later use (e.g., deployment).
+Example: mlflow.sklearn.log_model(model, "model")
+Notes: Framework-specific (e.g., mlflow.sklearn, mlflow.pytorch).
+
+mlflow.set_tracking_uri(uri)
+Purpose: Set the tracking server (local or remote).
+Example: mlflow.set_tracking_uri("http://localhost:5000")
+Notes: Default is local file-based tracking.
+
+mlflow.set_tag(key, value)
+Purpose: Add a tag to a run for metadata (e.g., "version": "1.0").
+Example: mlflow.set_tag("model_version", "1.0")
+
+mlflow.get_experiment_by_name(name)
+Purpose: Retrieve an experiment’s details by name.
+Example: experiment = mlflow.get_experiment_by_name("MyExperiment")
+
+mlflow.tracking.MlflowClient()
+Purpose: Advanced client for managing runs, experiments, and models.
+Example: client = mlflow.tracking.MlflowClient()
+
+2. MLflow CLI Commands
+These are terminal commands for interacting with MLflow (run with mlflow <command>).
+
+mlflow ui
+Purpose: Start the MLflow UI to visualize experiments and runs.
+Example: mlflow ui --port 5000
+Notes: Opens at http://localhost:5000 (default port).
+
+mlflow run <project_dir>
+Purpose: Run an MLflow project.
+Example: mlflow run my_project -P alpha=0.1
+Notes: Use -P to pass parameters defined in the MLproject file.
+
+mlflow models serve
+Purpose: Serve a logged model as a REST API.
+Example: mlflow models serve -m runs:/<run_id>/model --port 1234
+Notes: Requires the run ID from the UI or API.
+
+mlflow models predict
+Purpose: Make predictions using a logged model.
+Example: mlflow models predict -m runs:/<run_id>/model -i input.csv
+Notes: Input data must be in a compatible format (e.g., CSV, JSON).
+
+mlflow experiments create
+Purpose: Create a new experiment via CLI.
+Example: mlflow experiments create --experiment-name MyExperiment
+
+mlflow experiments list
+Purpose: List all experiments.
+Example: mlflow experiments list
+
+mlflow runs list
+Purpose: List runs for an experiment.
+Example: mlflow runs list --experiment-id 1
+
+mlflow server
+Purpose: Start a remote MLflow tracking server.
+Example: mlflow server --backend-store-uri sqlite:///mlflow.db --default-artifact-root ./artifacts
+Notes: Used for centralized tracking.
+
+3. MLflow Model Registry (Python API)
+These functions are used to manage models in the MLflow Model Registry (requires a tracking server with registry support).
+
+mlflow.register_model(model_uri, name), or client.create_registered_model
+Purpose: Register a logged model in the Model Registry.
+Example: mlflow.register_model("runs:/<run_id>/model", "MyModel")
+Notes: model_uri points to the model’s location (e.g., runs:/<run_id>/model).
+
+client.transition_model_version_stage(name, version, stage)
+Purpose: Transition a model version to a stage (e.g., Staging, Production).
+Example: client.transition_model_version_stage("MyModel", 1, "Staging")
+Notes: Requires MlflowClient.
+
+client.update_model_version(name, version, description)
+Purpose: Update metadata for a model version.
+Example: client.update_model_version("MyModel", 1, "Updated model")
+
+client.get_latest_versions(name, stages=None)
+Purpose: Get the latest model versions for specified stages.
+Example: client.get_latest_versions("MyModel", stages=["Staging"])

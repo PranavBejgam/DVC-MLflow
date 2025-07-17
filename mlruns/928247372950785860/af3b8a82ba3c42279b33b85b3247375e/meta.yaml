@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/928247372950785860/af3b8a82ba3c42279b33b85b3247375e/artifacts
+end_time: 1752747924337
+entry_point_name: ''
+experiment_id: '928247372950785860'
+lifecycle_stage: active
+run_id: af3b8a82ba3c42279b33b85b3247375e
+run_name: mnist-cnn-run
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1752747883906
+status: 4
+tags: []
+user_id: Pranav Bejgam

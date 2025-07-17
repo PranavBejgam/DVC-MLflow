@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/787312093604506156/d7bf921787c043988deca24d05121713/artifacts
+end_time: 1752730774115
+entry_point_name: ''
+experiment_id: '787312093604506156'
+lifecycle_stage: active
+run_id: d7bf921787c043988deca24d05121713
+run_name: hilarious-ant-368
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1752730770120
+status: 3
+tags: []
+user_id: Pranav Bejgam
